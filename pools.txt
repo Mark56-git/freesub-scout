@@ -4,3 +4,16 @@
 #   公开仓 → 找仓库内节点文件 → raw 验证确实含节点 → 去重追加。各源解析/丢弃统计见
 #   pool/_sources.json。首轮运行前本文件为空, scout 会自动填入, 无需手工准备。
 # 手动追加也可 (下一轮自动生效)。
+
+# gh-scout 2026-10-08 自动搜集 +11 源 (近 30 天活跃 + raw 验真)
+https://raw.githubusercontent.com/wenxig/free-nodes-sub/main/clash_template.yaml
+https://raw.githubusercontent.com/wenxig/dongtai-sub/main/clash_template.yaml
+https://raw.githubusercontent.com/hello-world-1989/cn-news/main/clash-free.yaml
+https://raw.githubusercontent.com/hello-world-1989/cn-news/main/clash-test.yaml
+https://raw.githubusercontent.com/hello-world-1989/cn-news/main/clash.yaml
+https://raw.githubusercontent.com/pornnewbee/free-vless-VPN/main/vless.txt
+https://raw.githubusercontent.com/share-daily/node/main/clash.yaml
+https://raw.githubusercontent.com/CB-X2-Jun/verified-v2ray-lists/main/node.txt
+https://raw.githubusercontent.com/zhuhaiuk/free-nodes/main/clash_config.yaml
+https://raw.githubusercontent.com/zhuhaiuk/free-nodes/main/extra_clash_config.yaml
+https://raw.githubusercontent.com/zhuhaiuk/free-nodes/main/nodes.txt
