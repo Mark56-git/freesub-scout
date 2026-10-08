@@ -1,11 +1,8 @@
 name: collect
 
 on:
-  # 定时 12h 一轮 (公开仓 CI 分钟不限额, 零成本常驻)。
-  # 暂关: 当前仓为私有 (GitHub Free 私有仓仅 2000min/月, 12h×48×55min≈2640 会顶穿),
-  # 转公开后把下面这段解开注释即可; 私有期间用手动 Run workflow。
-  # schedule:
-  #   - cron: '0 */12 * * *'
+  schedule:
+    - cron: '0 */12 * * *'   # 每 12h (公开仓 CI 分钟不限额, 零成本常驻)
   workflow_dispatch: {}       # 手动触发 (改完 pools.txt 立即生效)
 
 jobs:
