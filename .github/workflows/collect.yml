@@ -17,7 +17,7 @@ jobs:
           python-version: '3.11'
           cache: 'pip'
 
-      - run: pip install pyyaml    # clash yaml 源解析用 (subconv 本体零依赖)
+      - run: pip install -r requirements.txt    # clash yaml 源解析用 (subconv 本体零依赖)
 
       - name: 搜集新 GitHub 节点源 (幂等; 失败不阻断, 用现有源继续)
         # scout 内置 6 分钟时间预算 + 单次最多 50 新源, 不会拖垮整轮
