@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+# subconv 下载的原始缓存 (每次 CI 重下, 不入仓)
+pool/dl_*.sub
+pool/_subconv.log
+pool/_batch.urls

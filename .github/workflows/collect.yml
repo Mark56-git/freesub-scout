@@ -1,0 +1,46 @@
+name: collect
+
+on:
+  # 定时 12h 一轮 (公开仓 CI 分钟不限额, 零成本常驻)。
+  # 暂关: 当前仓为私有 (GitHub Free 私有仓仅 2000min/月, 12h×48×55min≈2640 会顶穿),
+  # 转公开后把下面这段解开注释即可; 私有期间用手动 Run workflow。
+  # schedule:
+  #   - cron: '0 */12 * * *'
+  workflow_dispatch: {}       # 手动触发 (改完 pools.txt 立即生效)
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55    # 硬顶: 搜集有 6min 预算, subconv 下载最坏 ~15min, 留足余量; 超了当失败下轮重跑
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - run: pip install pyyaml    # clash yaml 源解析用 (subconv 本体零依赖)
+
+      - name: 搜集新 GitHub 节点源 (幂等; 失败不阻断, 用现有源继续)
+        # scout 内置 6 分钟时间预算 + 单次最多 50 新源, 不会拖垮整轮
+        run: timeout 420 python scout.py || echo '[warn] scout 超时/失败, 继续用现有 pools.txt'
+
+      - name: 下载全部源 + 全格式解析 + 指纹去重 (subconv, 单源 30s 超时, 10 路并发)
+        run: python subconv.py --urlfile pools.txt -o pool
+
+      - name: 提交池子 (无变化不提交)
+        run: |
+          # 中性 bot 身份: 公开仓不挂个人信息
+          git config user.name "freesub-scout-bot"
+          git config user.email "freesub-scout-bot@users.noreply.github.com"
+          git add pools.txt
+          git add pool/merged-v2ray.txt pool/merged-v2ray-blob.txt pool/merged-clash.yaml 2>/dev/null || true
+          git add pool/pool-*-v2ray.txt pool/pool-*-v2ray-blob.txt pool/pool-*-clash.yaml 2>/dev/null || true
+          git add pool/pools.json pool/_sources.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "池子无变化, 跳过提交"
+          else
+            git commit -m "collect: $(date -u '+%Y-%m-%d %H:%M') UTC"
+            git push
+          fi
