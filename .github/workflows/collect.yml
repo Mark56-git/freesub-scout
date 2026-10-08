@@ -1,5 +1,8 @@
 name: collect
 
+permissions:
+  contents: write    # 提交 pool/ 需写权限(默认 GITHUB_TOKEN 只读, 缺则 403)
+
 on:
   schedule:
     - cron: '0 */12 * * *'   # 每 12h (公开仓 CI 分钟不限额, 零成本常驻)
