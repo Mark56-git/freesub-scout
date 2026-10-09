@@ -17,3 +17,8 @@ https://raw.githubusercontent.com/CB-X2-Jun/verified-v2ray-lists/main/node.txt
 https://raw.githubusercontent.com/zhuhaiuk/free-nodes/main/clash_config.yaml
 https://raw.githubusercontent.com/zhuhaiuk/free-nodes/main/extra_clash_config.yaml
 https://raw.githubusercontent.com/zhuhaiuk/free-nodes/main/nodes.txt
+
+# gh-scout 2026-10-09 自动搜集 +3 源 (活跃+新仓轮转 + raw 验真)
+https://raw.githubusercontent.com/sdise/vpngate/main/vpngate-clash.yaml
+https://raw.githubusercontent.com/sdise/vpngate/main/vpngate-v2ray.txt
+https://raw.githubusercontent.com/awesome-vpn/awesome-vpn/master/clash.yaml
