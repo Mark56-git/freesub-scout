@@ -31,3 +31,13 @@ https://raw.githubusercontent.com/slxkware/Vless-list/main/White%20Vless.txt
 https://raw.githubusercontent.com/wobushilixi/free-proxy-nodes/main/clash.yaml
 https://raw.githubusercontent.com/hamzawih0/zorVPN/main/clash.yaml
 https://raw.githubusercontent.com/missolin/missolin.github.io/main/clash_free.yaml
+
+# gh-scout 2026-10-10 自动搜集 +8 源 (活跃+新仓轮转 + raw 验真)
+https://raw.githubusercontent.com/billkit/vanic-mix-subs/main/vanic_merged.yaml
+https://raw.githubusercontent.com/shuoce/sub/main/clash.yaml
+https://raw.githubusercontent.com/shuoce/sub/main/nodes.txt
+https://raw.githubusercontent.com/shuoce/sub/main/nodes_new.txt
+https://raw.githubusercontent.com/sammy0101/cf-sub-converter/main/Clash_Rules.YAML
+https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/main/V2Ray-Config-By-EbraSha-All-Type.txt
+https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/main/V2Ray-Config-By-EbraSha.txt
+https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/main/vless_configs.txt
