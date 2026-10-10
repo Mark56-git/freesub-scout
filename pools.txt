@@ -22,3 +22,7 @@ https://raw.githubusercontent.com/zhuhaiuk/free-nodes/main/nodes.txt
 https://raw.githubusercontent.com/sdise/vpngate/main/vpngate-clash.yaml
 https://raw.githubusercontent.com/sdise/vpngate/main/vpngate-v2ray.txt
 https://raw.githubusercontent.com/awesome-vpn/awesome-vpn/master/clash.yaml
+
+# gh-scout 2026-10-10 自动搜集 +2 源 (活跃+新仓轮转 + raw 验真)
+https://raw.githubusercontent.com/slxkware/Vless-list/main/Black%20Vless.txt
+https://raw.githubusercontent.com/slxkware/Vless-list/main/White%20Vless.txt
