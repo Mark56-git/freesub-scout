@@ -26,3 +26,8 @@ https://raw.githubusercontent.com/awesome-vpn/awesome-vpn/master/clash.yaml
 # gh-scout 2026-10-10 自动搜集 +2 源 (活跃+新仓轮转 + raw 验真)
 https://raw.githubusercontent.com/slxkware/Vless-list/main/Black%20Vless.txt
 https://raw.githubusercontent.com/slxkware/Vless-list/main/White%20Vless.txt
+
+# gh-scout 2026-10-10 自动搜集 +3 源 (活跃+新仓轮转 + raw 验真)
+https://raw.githubusercontent.com/wobushilixi/free-proxy-nodes/main/clash.yaml
+https://raw.githubusercontent.com/hamzawih0/zorVPN/main/clash.yaml
+https://raw.githubusercontent.com/missolin/missolin.github.io/main/clash_free.yaml
