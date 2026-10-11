@@ -41,3 +41,8 @@ https://raw.githubusercontent.com/sammy0101/cf-sub-converter/main/Clash_Rules.YA
 https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/main/V2Ray-Config-By-EbraSha-All-Type.txt
 https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/main/V2Ray-Config-By-EbraSha.txt
 https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/main/vless_configs.txt
+
+# gh-scout 2026-10-11 自动搜集 +3 源 (活跃+新仓轮转 + raw 验真)
+https://raw.githubusercontent.com/vincent20240707/free-v2ray-nodes/main/nodes.txt
+https://raw.githubusercontent.com/zhangdunlong/free-v2ray-nodes/main/nodes_base64.txt
+https://raw.githubusercontent.com/zhangdunlong/free-v2ray-nodes/main/unique_nodes.txt
