@@ -31,6 +31,7 @@ from urllib.parse import urlparse, parse_qs, unquote, quote
 WARN = {}          # 跳过的节点原因计数 {reason: n}
 WARN_EX = {}       # {reason: [样本行×≤3]}：跳过统计里带样本，便于调试（"未知协议:ss"这类才能看到原行）
 NODES = []         # 统一节点：(key, 归一dict, raw{raw/name/source}, kind)
+POOL_CAP = 20000   # 池节点上限 (Mr.Mark 2026-10-13): 超过就清一次 — pools.txt 序=发现序, 头部=最久之前的源, 裁头部留最新
 # 溯源 + 逐源统计：当前在解析的源 (label=dl_N.sub/文件名, url=原始订阅 URL)
 SRC = {'label': '', 'url': ''}
 SMAP = {}          # {dl_N.sub basename: {'url':..., 'line':N}} fetch_urls 填、process_file 溯源用
@@ -1428,6 +1429,14 @@ def main():
         for kind, f, s in _bad[:10]:
             print('   [%s] %s = %r' % (kind, f, s))
         print('=' * 56)
+    # ── 池上限 (2026-10-13 Mr.Mark): 节点池膨胀且很多是很久之前的源 → 超过 20000 清理一次。
+    #    顺序=解析序=pools.txt 行序=scout 发现序(新源 append 尾部) → 头部是最久之前的源贡献, 裁头部留最新。
+    _pre_cap = len(NODES)
+    if _pre_cap > POOL_CAP:
+        _drop = _pre_cap - POOL_CAP
+        del NODES[:_drop]
+        print(f'\n[pool-cap] 池 {_pre_cap} > {POOL_CAP} → 清理最久之前源的 {_drop} 个节点, 保留最新 {POOL_CAP} '
+              f'(顺序=pools.txt 发现序; 三格式同源裁剪, 一致)')
     out_c = os.path.join(args.out, 'merged-clash.yaml')
     out_v = os.path.join(args.out, 'merged-v2ray.txt')
     emit_clash_yaml(out_c, NODES)
