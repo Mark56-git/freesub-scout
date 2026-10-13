@@ -31,7 +31,7 @@ from urllib.parse import urlparse, parse_qs, unquote, quote
 WARN = {}          # 跳过的节点原因计数 {reason: n}
 WARN_EX = {}       # {reason: [样本行×≤3]}：跳过统计里带样本，便于调试（"未知协议:ss"这类才能看到原行）
 NODES = []         # 统一节点：(key, 归一dict, raw{raw/name/source}, kind)
-POOL_CAP = 20000   # 池节点上限 (Mr.Mark 2026-10-13): 超过就清一次 — pools.txt 序=发现序, 头部=最久之前的源, 裁头部留最新
+POOL_CAP = 10000   # 池节点上限 (Mr.Mark 2026-10-13): 超过就清一次 — pools.txt 序=发现序, 头部=最久之前的源, 裁头部留最新
 # 溯源 + 逐源统计：当前在解析的源 (label=dl_N.sub/文件名, url=原始订阅 URL)
 SRC = {'label': '', 'url': ''}
 SMAP = {}          # {dl_N.sub basename: {'url':..., 'line':N}} fetch_urls 填、process_file 溯源用
