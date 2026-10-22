@@ -67,3 +67,6 @@ https://raw.githubusercontent.com/hamzawih0/zorVPN/main/ZorVPN-nodes.txt
 https://raw.githubusercontent.com/zhulinghuanyu/Subscribe/main/clash.yaml
 https://raw.githubusercontent.com/zhulinghuanyu/Subscribe/main/v2ray.txt
 https://raw.githubusercontent.com/gslege/CloudflareIP/main/Vless.txt
+
+# gh-scout 2026-10-22 自动搜集 +1 源 (活跃+新仓轮转 + raw 验真)
+https://raw.githubusercontent.com/lm705/vair/main/vless_alive.txt
