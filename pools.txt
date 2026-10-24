@@ -73,3 +73,6 @@ https://raw.githubusercontent.com/lm705/vair/main/vless_alive.txt
 
 # gh-scout 2026-10-24 自动搜集 +1 源 (活跃+新仓轮转 + raw 验真)
 https://raw.githubusercontent.com/Iliya3ProX/good_proxies/main/vless_keys.txt
+
+# gh-scout 2026-10-24 自动搜集 +1 源 (活跃+新仓轮转 + raw 验真)
+https://raw.githubusercontent.com/realfreevpn/free-nodes/main/nodes.txt
