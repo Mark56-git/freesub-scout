@@ -70,3 +70,6 @@ https://raw.githubusercontent.com/gslege/CloudflareIP/main/Vless.txt
 
 # gh-scout 2026-10-22 自动搜集 +1 源 (活跃+新仓轮转 + raw 验真)
 https://raw.githubusercontent.com/lm705/vair/main/vless_alive.txt
+
+# gh-scout 2026-10-24 自动搜集 +1 源 (活跃+新仓轮转 + raw 验真)
+https://raw.githubusercontent.com/Iliya3ProX/good_proxies/main/vless_keys.txt
