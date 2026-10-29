@@ -79,3 +79,7 @@ https://raw.githubusercontent.com/realfreevpn/free-nodes/main/nodes.txt
 
 # gh-scout 2026-10-28 自动搜集 +1 源 (活跃+新仓轮转 + raw 验真)
 https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml
+
+# gh-scout 2026-10-29 自动搜集 +2 源 (活跃+新仓轮转 + raw 验真)
+https://raw.githubusercontent.com/nichecer/v2ray-node-share/main/nodes.txt
+https://raw.githubusercontent.com/nichecer/shadowrocket-node-share/main/nodes.txt
