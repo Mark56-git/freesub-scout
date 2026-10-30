@@ -86,3 +86,6 @@ https://raw.githubusercontent.com/nichecer/shadowrocket-node-share/main/nodes.tx
 
 # gh-scout 2026-10-30 自动搜集 +1 源 (活跃+新仓轮转 + raw 验真)
 https://raw.githubusercontent.com/BarqDev1/vless-aggregator/main/vless_universal.txt
+
+# gh-scout 2026-10-30 自动搜集 +1 源 (活跃+新仓轮转 + raw 验真)
+https://raw.githubusercontent.com/zhuabshou-stack/clash-sub/main/clash-rental-us-pure.yaml
