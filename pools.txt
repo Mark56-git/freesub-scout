@@ -89,3 +89,11 @@ https://raw.githubusercontent.com/BarqDev1/vless-aggregator/main/vless_universal
 
 # gh-scout 2026-10-30 自动搜集 +1 源 (活跃+新仓轮转 + raw 验真)
 https://raw.githubusercontent.com/zhuabshou-stack/clash-sub/main/clash-rental-us-pure.yaml
+
+# gh-scout 2026-11-01 自动搜集 +6 源 (活跃+新仓轮转 + raw 验真)
+https://raw.githubusercontent.com/aivey565/free-nodes/main/free-nodes-full.yaml
+https://raw.githubusercontent.com/aivey565/free-nodes/main/free-nodes.txt
+https://raw.githubusercontent.com/aivey565/free-nodes/main/free-nodes.yaml
+https://raw.githubusercontent.com/aivey565/free-nodes/main/free-nodes-full.yaml
+https://raw.githubusercontent.com/aivey565/free-nodes/main/free-nodes.txt
+https://raw.githubusercontent.com/aivey565/free-nodes/main/free-nodes.yaml
