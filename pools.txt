@@ -97,3 +97,9 @@ https://raw.githubusercontent.com/aivey565/free-nodes/main/free-nodes.yaml
 https://raw.githubusercontent.com/aivey565/free-nodes/main/free-nodes-full.yaml
 https://raw.githubusercontent.com/aivey565/free-nodes/main/free-nodes.txt
 https://raw.githubusercontent.com/aivey565/free-nodes/main/free-nodes.yaml
+
+# gh-scout 2026-11-05 自动搜集 +4 源 (活跃+新仓轮转 + raw 验真)
+https://raw.githubusercontent.com/TravelLeobai/SCHPD/main/Clash_Vless.yaml
+https://raw.githubusercontent.com/TravelLeobai/SCHPD/main/clash.yaml
+https://raw.githubusercontent.com/guo0914/Free-Node/main/clash.yaml
+https://raw.githubusercontent.com/guo0914/Free-Node/main/v2ray.txt
