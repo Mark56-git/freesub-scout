@@ -20,7 +20,7 @@ subconv.py — 零依赖订阅格式转换/合并器（纯 Python 标准库，su
   python subconv.py --urls "https://a|https://b" [-o out] [--proxy http://127.0.0.1:7890]
 
 说明：
-  - 纯离线转换，不需要网络（--urls 才下载；本机走 Clash 时加 --proxy http://127.0.0.1:7890）
+  - 纯离线转换，不需要网络（--urls 才下载；需要走本地代理时加 --proxy http://127.0.0.1:7890）
   - 支持协议：vless(reality/tls/ws/grpc) vmess trojan ss ssr hysteria2 tuic socks5 http/https
   - 免费节点仅供测试学习，勿用于敏感账号
 """
@@ -31,7 +31,8 @@ from urllib.parse import urlparse, parse_qs, unquote, quote
 WARN = {}          # 跳过的节点原因计数 {reason: n}
 WARN_EX = {}       # {reason: [样本行×≤3]}：跳过统计里带样本，便于调试（"未知协议:ss"这类才能看到原行）
 NODES = []         # 统一节点：(key, 归一dict, raw{raw/name/source}, kind)
-POOL_CAP = 10000   # 池节点上限 (Mr.Mark 2026-10-13): 超过就清一次 — pools.txt 序=发现序, 头部=最久之前的源, 裁头部留最新
+_KEYS = set()      # 去重索引: key 集合, O(1) 判重 (NODES 万级时线性扫描会退化)
+POOL_CAP = 10000   # 池节点上限(安全阀): 超过时按「源贡献量从大到小」裁剪, 保源多样性(见 _trim_by_source)
 # 溯源 + 逐源统计：当前在解析的源 (label=dl_N.sub/文件名, url=原始订阅 URL)
 SRC = {'label': '', 'url': ''}
 SMAP = {}          # {dl_N.sub basename: {'url':..., 'line':N}} fetch_urls 填、process_file 溯源用
@@ -98,7 +99,7 @@ def ensure_vendor_yaml():
                 shutil.rmtree(os.path.join(vdir, f), ignore_errors=True)
 
     def _get(url, timeout=40):
-        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 R2-subconv-yaml-boot'})
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 freesub-subconv-yaml-boot'})
         try:
             return urllib.request.urlopen(req, timeout=timeout).read()
         except Exception:
@@ -246,8 +247,9 @@ def add(clash_dict, raw_uri, kind):
     # 去重指纹（用规范化前的稳定字段）
     key = (clash_dict.get('type'), clash_dict['server'], clash_dict['port'],
            str(clash_dict.get('uuid', clash_dict.get('password', ''))),
-           str(clash_dict.get('server-name', clash_dict.get('sni', ''))), str(clash_dict.get('flow', '')))
-    if any(k2 == key for k2, _, _, _ in NODES):
+           str(clash_dict.get('server-name', clash_dict.get('servername', clash_dict.get('sni', '')))),
+           str(clash_dict.get('flow', '')))
+    if key in _KEYS:
         warn('重复'); return
     if not _finalize(clash_dict):
         warn('ss2022加密(mihomo不兼容)', f"{clash_dict.get('server')}:{clash_dict.get('port')}"); return
@@ -276,6 +278,7 @@ def _ingest(key, d, raw, kind):
         raw['source'] = SRC.get('label')
         raw = _strip_lone_surrogates(raw)
     NODES.append((key, d, raw, kind))
+    _KEYS.add(key)
     _log_src_added()
 
 # ---------- 各协议解析 ----------
@@ -579,6 +582,32 @@ PARSERS = {'vless': parse_vless, 'vmess': parse_vmess, 'trojan': parse_trojan,
            'socks5h': parse_plain,
            'http': parse_plain, 'https': parse_plain}
 
+# ---------- 池上限裁剪：按源贡献量公平裁剪（保源多样性） ----------
+def _trim_by_source(nodes, cap):
+    """池超上限时裁到 cap：每次从「当前节点数最多」的源里去掉 1 个（该源的最后一个），循环至达标。
+    效果 = 贡献最多的源先让位，小源完全不动 → 避免某一批镜像源独占，也不再整源清空。
+    源标签取自 raw['source']（_ingest 写入）；无标签的归入 '<unknown>'。稳定可复现。"""
+    import heapq
+    from collections import defaultdict, deque
+    by_src = defaultdict(deque)
+    for i, n in enumerate(nodes):
+        lab = (n[2].get('source') if isinstance(n[2], dict) else None) or '<unknown>'
+        by_src[lab].append(i)
+    drop = set()
+    heap = [(-len(q), lab) for lab, q in by_src.items()]
+    heapq.heapify(heap)
+    need = len(nodes) - cap
+    while need > 0 and heap:
+        neg, lab = heapq.heappop(heap)
+        q = by_src[lab]
+        if not q:
+            continue
+        drop.add(q.pop())          # 去该源最后一个（解析序靠后）
+        need -= 1
+        if q:
+            heapq.heappush(heap, (-len(q), lab))
+    return [n for i, n in enumerate(nodes) if i not in drop]
+
 # ---------- 备用小池（打散分配，稳定指纹哈希：加新源不挪旧节点） ----------
 def partition_pools(nodes, n=6):
     """把去重后的节点集按 指纹哈希 打散到 n 个互斥小池（每池协议/地区自然混合）。
@@ -667,7 +696,7 @@ def extract_sub_urls(text):
     return out
 
 
-# ---------- 输入识别（CLI 文件与 webgui 粘贴共用） ----------
+# ---------- 输入识别（CLI 文件 / 粘贴文本共用） ----------
 def process_text(raw, label='<粘贴>'):
     """按内容自动识别输入格式并解析：JSON(v2ray/sing-box) / Clash YAML / base64 blob / URI 行列表"""
     raw = (raw or '').strip()
@@ -711,7 +740,7 @@ def process_text(raw, label='<粘贴>'):
                 for pr in data['proxies']:
                     if isinstance(pr, dict) and pr.get('type'):
                         pr.setdefault('name', 'unnamed')
-                        _ingest((pr.get('type'), pr.get('server'), pr.get('port')), pr, {}, 'clash-yaml')
+                        add(pr, {}, 'clash-yaml')
                 print(f'  [YAML] {label}: 合并 {len(data["proxies"])} 个节点')
             return
         except Exception as e:
@@ -776,7 +805,7 @@ def process_singbox(data, path):
     for ob in data.get('outbounds', []):
         t = ob.get('type')
         if t in ('direct', 'dns', 'loopback', 'blackhole', 'selector', 'urltest', 'balancer'): continue
-        host, port = ob.get('server', ''), ob.get('port', 0)
+        host, port = ob.get('server', ''), ob.get('server_port', ob.get('port', 0))
         try: port = int(port or 0)
         except (TypeError, ValueError): port = 0
         # sing-box type → mihomo type 映射：shadowsocks=ss、hysteria=hysteria2（漏映射 mihomo 拒收）
@@ -839,9 +868,7 @@ def process_singbox(data, path):
             if t == 'http' and (ob.get('tls') or {}).get('enabled'): d['tls'] = True
         if not host or not port or (t in ('vless', 'vmess', 'tuic') and not d.get('uuid')):
             warn('singbox节点缺字段', d.get('name')); continue
-        if not _finalize(d):
-            continue
-        _ingest((d['type'], host, port, str(d.get('uuid', d.get('password', '')))), d, {}, f'singbox:{t}')
+        add(d, {}, f'singbox:{t}')   # 统一入口: 指纹去重 + _finalize + 溯源 (勿再预调 _finalize: 会重复记 warn)
     print(f'  [singbox] {os.path.basename(path)}: 合并 {len(NODES)-n0} 个节点')
 
 def process_v2rayjson(data, path):
@@ -858,6 +885,21 @@ def process_v2rayjson(data, path):
             try: st = json.loads(st)
             except Exception:
                 warn('v2ray-json settings 非对象(剔除)', ob.get('tag', '')); continue
+        # settings 形状归一：vless/vmess 用 settings.vnext[]，trojan/ss/hysteria 用 settings.servers[]。
+        # 把首个 server 摊平成 flat dict（含 users[0] 的 id/flow），供下面统一按 address/port/id 取字段。
+        srv = {}
+        if isinstance(st.get('vnext'), list) and st['vnext']:
+            srv = dict(st['vnext'][0])
+            us = srv.get('users') or []
+            if us and isinstance(us[0], dict):
+                for _k, _v in us[0].items():
+                    srv.setdefault(_k, _v)
+        elif isinstance(st.get('servers'), list) and st['servers']:
+            srv = dict(st['servers'][0])
+        elif st.get('address') or st.get('server'):
+            srv = st                      # 已被摊平的老式写法
+        if srv:
+            st = srv
         ss = ob.get('streamSettings', {}) or {}
         if isinstance(ss, str):
             try: ss = json.loads(ss)
@@ -925,15 +967,7 @@ def process_v2rayjson(data, path):
             warn('v2ray-json缺uuid', tag); continue
         if d['type'] in ('ss', 'trojan', 'hysteria2', 'anytls') and not d.get('password'):
             warn('v2ray-json缺凭证', tag); continue
-        key = (d['type'], host, port, str(d.get('uuid', d.get('password', ''))),
-               str(d.get('server-name', d.get('sni', ''))), str(d.get('flow', '')))
-        if any(k2 == key for k2, _, _, _ in NODES):
-            warn('重复')
-            continue
-        if not _finalize(d):
-            warn('v2ray-json ss2022(不兼容)', tag)
-            continue
-        _ingest((key, d, {}, f'v2rayjson:{proto}'))
+        add(d, {}, f'v2rayjson:{proto}')   # 统一入口: 指纹去重 + _finalize + 溯源
     print(f'  [v2ray-json] {os.path.basename(path)}: 合并 {len(NODES)-n0} 个节点')
 
 # ---------- YAML 输出 ----------
@@ -1045,7 +1079,7 @@ def emit_clash_yaml(path, nodes, variant='flclash'):
         'rules': ['GEOIP,LAN,DIRECT', 'GEOIP,CN,DIRECT', 'MATCH,PROXY']}
     header = '\n'.join([
         '# ============================================================',
-        f'# R2 subconv 生成 · {len(proxies)} 个免费节点 · {time.strftime("%Y-%m-%d %H:%M")}',
+        f'# freesub-scout 生成 · {len(proxies)} 个免费节点 · {time.strftime("%Y-%m-%d %H:%M")}',
         '# 导入对象：FlClash / Clash Verge Rev / Mihomo Party（mihomo 内核）',
         '# 组：AUTO(自动测速换线) · PROXY(手动选择，含全部节点)',
         '# 导入后：① 配置页点选激活 ② 自动用 AUTO / 手动挑节点用 PROXY',
@@ -1056,7 +1090,7 @@ def emit_clash_yaml(path, nodes, variant='flclash'):
     open(path, 'w', encoding='utf-8', errors='replace').write(header + '\n' + '\n'.join(_dict_lines(top, 0)) + '\n')
 
 # ---------- round-trip 逆编码：归一 proxy dict → 标准节点 URI（单一事实源）----------
-# 原 Cloudfree main_v2.py 有个"临时桥" clash_proxy_to_uri 做这件事；这里正式收归 subconv，
+# 逆编码桥 clash_proxy_to_uri 收归 subconv 本体，
 # 让 Clash/sing-box/v2ray-json 解析出的节点也能进 merged-v2ray.txt / blob（三格式全量不遗漏）。
 # 字段约定 = subconv flclash 方言：SNI 是小写 servername（trojan/hysteria2 用 sni）；
 # shadowsocks 的 password 在 Clash YAML 里是 base64（重编码前用 _b64maybe 解码）。
@@ -1348,26 +1382,53 @@ def _find_lone_surrogates(nodes):
 
 
 def _write_source_manifest(outdir, smap):
-    """写 out/_sources.json：dl_N.sub ↔ node_pools.txt 行号/原始 URL + 该源解析出的节点数（可溯源）。"""
-    if not smap:
-        return
+    """写 out/_sources.json：逐源清单 + 逐节点溯源索引（可追溯「某节点来自哪个源」）。
+    sources: 每个源 {line,file,url,nodes,dropped}（nodes=该源最终入池数, dropped=解析期丢弃/判重）。
+    legend + node_source_index: 与产物同序的逐节点来源索引（供按源归因统计/淘汰低贡献源）。
+    纯数据文件, 只记录「节点↔公开订阅源」关系, 不含任何个人/本地信息。"""
     import json as _json
+    labels = set(SRC_STAT) | set(smap)
+    if not labels:
+        return
     rows = []
-    for label, meta in sorted(smap.items(), key=lambda kv: (kv[1].get('line') or 0)):
+    tot = 0
+
+    def _ln(lab):
+        m = smap.get(lab) or {}
+        return m.get('line') if m.get('line') is not None else 999999
+    for label in sorted(labels, key=lambda l: (_ln(l), l)):
+        meta = smap.get(label, {})
         st = SRC_STAT.get(label, {})
+        n = st.get('nodes', 0)
+        tot += n
         rows.append({'line': meta.get('line'), 'file': label, 'url': meta.get('url', ''),
-                     'nodes': st.get('nodes', 0), 'dropped': st.get('warns', {})})
+                     'nodes': n, 'dropped': st.get('warns', {})})
+    # 逐节点来源索引: legend=源标识序; node_source_index[i] = merged-v2ray.txt 第 i 行的源。
+    # 只收「能出标准 URI」的节点, 与 emit_v2ray_lines 的输出逐行严格对齐 (逆编码失败���节点本就不在那份文件里)。
+    legend, lidx, order = [], {}, []
+    for k, d, raw, kind in NODES:
+        if not node_uri(k, d, raw, kind):
+            continue
+        lab = (raw.get('source') if isinstance(raw, dict) else None) or ''
+        if lab not in lidx:
+            lidx[lab] = len(legend)
+            legend.append({'label': lab, 'url': smap.get(lab, {}).get('url', '')})
+        order.append(lidx[lab])
+    summary = {'sources': len(rows), 'total_nodes': len(NODES),
+               'sources_nodes_sum': tot, 'generated': time.strftime('%Y-%m-%d %H:%M UTC', time.gmtime())}
     try:
         open(os.path.join(outdir, '_sources.json'), 'w', encoding='utf-8', errors='replace').write(
-            _json.dumps(rows, ensure_ascii=False, indent=1))
+            _json.dumps({'summary': summary, 'sources': rows,
+                         'legend': legend, 'node_source_index': order}, ensure_ascii=False, indent=0))
     except Exception:
         pass
+
 
 def _print_coverage():
     """打印逐源解析/丢弃统计（"哪个源脏/重复/丢格式" 直接可定位）+ 无法逆编码计数。"""
     if not SRC_STAT:
         return
-    print('\n== 逐源统计（可溯源：dl_N.sub ↔ node_pools.txt 第 N 行 / 原始 URL）==')
+    print('\n== 逐源统计（可溯源：dl_N.sub ↔ pools.txt 第 N 行 / 原始 URL）==')
     for label, st in sorted(SRC_STAT.items(), key=lambda kv: -kv[1].get('nodes', 0)):
         dropped = st.get('warns', {})
         ds = ', '.join('%s×%d' % (k, v) for k, v in sorted(dropped.items(), key=lambda x: -x[1]) if k != '重复')
@@ -1425,18 +1486,19 @@ def main():
     if _bad:
         print('\n' + '=' * 56)
         print('!! 检出 %d 个字段含孤立 surrogate (源数据脏, 输出已替换为 U+FFFD;' % len(_bad))
-        print('   建议排查下列类型来源, 必要时从 node_pools.txt 摘除该源):')
+        print('   建议排查下列类型来源, 必要时从 pools.txt 摘除该源):')
         for kind, f, s in _bad[:10]:
             print('   [%s] %s = %r' % (kind, f, s))
         print('=' * 56)
-    # ── 池上限 (2026-10-13 Mr.Mark): 节点池膨胀且很多是很久之前的源 → 超过 20000 清理一次。
-    #    顺序=解析序=pools.txt 行序=scout 发现序(新源 append 尾部) → 头部是最久之前的源贡献, 裁头部留最新。
+    # ── 池上限（安全阀）: 池超过 POOL_CAP 时按「源贡献量」从大到小裁，保持源多样性。
+    #    早先按「pools.txt 发现序」裁头部 = 砍掉最久之前的源（老牌稳定源），保留最新源（噪声更多），
+    #    方向是反的；改为「大源先裁」：贡献节点最多的源（多为同一凭据批量堆 IP 的镜像源）先让位，
+    #    单源小贡献不受影响 → 池子规模受控的同时避免整源被清空。
     _pre_cap = len(NODES)
     if _pre_cap > POOL_CAP:
-        _drop = _pre_cap - POOL_CAP
-        del NODES[:_drop]
-        print(f'\n[pool-cap] 池 {_pre_cap} > {POOL_CAP} → 清理最久之前源的 {_drop} 个节点, 保留最新 {POOL_CAP} '
-              f'(顺序=pools.txt 发现序; 三格式同源裁剪, 一致)')
+        NODES[:] = _trim_by_source(NODES, POOL_CAP)
+        print(f'\n[pool-cap] 池 {_pre_cap} > {POOL_CAP} → 按源贡献量从大到小裁至 {len(NODES)} '
+              f'(大源先让位, 保留源多样性; 三格式同源裁剪, 一致)')
     out_c = os.path.join(args.out, 'merged-clash.yaml')
     out_v = os.path.join(args.out, 'merged-v2ray.txt')
     emit_clash_yaml(out_c, NODES)
@@ -1450,7 +1512,7 @@ def main():
         print('   跳过/警告:')
         for r, n in sorted(WARN.items(), key=lambda x: -x[1]):
             print(f'     {r}: {n}')
-    _write_source_manifest(args.out, SMAP)   # 溯源清单：dl_N.sub ↔ node_pools.txt 行号/URL + 各源节点数
+    _write_source_manifest(args.out, SMAP)   # 溯源清单：dl_N.sub ↔ pools.txt 行号/URL + 各源节点数
     _print_coverage()
     print(f'   输出: {out_c}\n         {out_v}')
 

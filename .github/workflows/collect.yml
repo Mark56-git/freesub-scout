@@ -31,13 +31,15 @@ jobs:
 
       - name: 提交池子 (无变化不提交)
         run: |
-          # 中性 bot 身份: 公开仓不挂个人信息
+          # 中性 bot 提交身份
           git config user.name "freesub-scout-bot"
           git config user.email "freesub-scout-bot@users.noreply.github.com"
-          git add pools.txt
-          git add pool/merged-v2ray.txt pool/merged-v2ray-blob.txt pool/merged-clash.yaml 2>/dev/null || true
-          git add pool/pool-*-v2ray.txt pool/pool-*-v2ray-blob.txt pool/pool-*-clash.yaml 2>/dev/null || true
-          git add pool/pools.json pool/_sources.json 2>/dev/null || true
+          # 逐个 add 并各自容错: 任一文件不存在不能让整条 git add 失败(fatal 会连带丢弃后续路径)
+          git add pools.txt || true
+          git add pool/merged-v2ray.txt || true
+          git add pool/merged-v2ray-blob.txt || true
+          git add pool/merged-clash.yaml || true
+          git add pool/_sources.json || true
           if git diff --staged --quiet; then
             echo "池子无变化, 跳过提交"
           else
