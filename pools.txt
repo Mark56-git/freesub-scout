@@ -103,3 +103,7 @@ https://raw.githubusercontent.com/TravelLeobai/SCHPD/main/Clash_Vless.yaml
 https://raw.githubusercontent.com/TravelLeobai/SCHPD/main/clash.yaml
 https://raw.githubusercontent.com/guo0914/Free-Node/main/clash.yaml
 https://raw.githubusercontent.com/guo0914/Free-Node/main/v2ray.txt
+
+# gh-scout 2026-11-08 自动搜集 +2 源 (活跃+新仓轮转 + raw 验真)
+https://raw.githubusercontent.com/TheHunterX/oneforallhub-v2ray-configs/main/auto-subscription.txt
+https://raw.githubusercontent.com/TheHunterX/oneforallhub-v2ray-configs/main/subscription.txt
