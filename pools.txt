@@ -110,3 +110,6 @@ https://raw.githubusercontent.com/TheHunterX/oneforallhub-v2ray-configs/main/sub
 
 # gh-scout 2026-11-10 自动搜集 +1 源 (活跃+新仓轮转 + raw 验真)
 https://raw.githubusercontent.com/v2raynnodes/clashfree/main/clash.yaml
+
+# gh-scout 2026-11-11 自动搜集 +1 源 (活跃+新仓轮转 + raw 验真)
+https://raw.githubusercontent.com/guhaoxin123/dsh-vpn/main/clash.yaml
