@@ -113,3 +113,7 @@ https://raw.githubusercontent.com/v2raynnodes/clashfree/main/clash.yaml
 
 # gh-scout 2026-11-11 自动搜集 +1 源 (活跃+新仓轮转 + raw 验真)
 https://raw.githubusercontent.com/guhaoxin123/dsh-vpn/main/clash.yaml
+
+# gh-scout 2026-11-13 自动搜集 +2 源 (活跃+新仓轮转 + raw 验真)
+https://raw.githubusercontent.com/Erye932/clash-sub/master/clash.yaml
+https://raw.githubusercontent.com/Erye932/clash-sub/master/clash_shop.yaml
