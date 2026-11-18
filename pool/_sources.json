@@ -1,9 +1,9 @@
 {
 "summary": {
 "sources": 66,
-"total_nodes": 6501,
-"sources_nodes_sum": 6501,
-"generated": "2026-11-17 23:20 UTC"
+"total_nodes": 6683,
+"sources_nodes_sum": 6683,
+"generated": "2026-11-18 05:48 UTC"
 },
 "sources": [
 {
@@ -24,7 +24,7 @@
 "line": 3,
 "file": "dl_2.sub",
 "url": "https://raw.githubusercontent.com/hello-world-1989/cn-news/main/clash-free.yaml",
-"nodes": 3,
+"nodes": 6,
 "dropped": {}
 },
 {
@@ -54,9 +54,9 @@
 "line": 7,
 "file": "dl_6.sub",
 "url": "https://raw.githubusercontent.com/share-daily/node/main/clash.yaml",
-"nodes": 190,
+"nodes": 302,
 "dropped": {
-"重复": 64
+"重复": 290
 }
 },
 {
@@ -72,27 +72,27 @@
 "line": 9,
 "file": "dl_8.sub",
 "url": "https://raw.githubusercontent.com/zhuhaiuk/free-nodes/main/clash_config.yaml",
-"nodes": 28,
+"nodes": 34,
 "dropped": {
-"重复": 4
+"重复": 5
 }
 },
 {
 "line": 10,
 "file": "dl_9.sub",
 "url": "https://raw.githubusercontent.com/zhuhaiuk/free-nodes/main/extra_clash_config.yaml",
-"nodes": 0,
+"nodes": 1,
 "dropped": {
-"重复": 6
+"重复": 5
 }
 },
 {
 "line": 11,
 "file": "dl_10.sub",
 "url": "https://raw.githubusercontent.com/zhuhaiuk/free-nodes/main/nodes.txt",
-"nodes": 2,
+"nodes": 0,
 "dropped": {
-"重复": 26
+"重复": 30
 }
 },
 {
@@ -113,7 +113,7 @@
 "line": 14,
 "file": "dl_13.sub",
 "url": "https://raw.githubusercontent.com/awesome-vpn/awesome-vpn/master/clash.yaml",
-"nodes": 9,
+"nodes": 7,
 "dropped": {
 "ss2022加密(mihomo不兼容)": 2
 }
@@ -152,9 +152,9 @@
 "line": 19,
 "file": "dl_18.sub",
 "url": "https://raw.githubusercontent.com/missolin/missolin.github.io/main/clash_free.yaml",
-"nodes": 8,
+"nodes": 5,
 "dropped": {
-"重复": 7,
+"重复": 10,
 "ss2022加密(mihomo不兼容)": 1
 }
 },
@@ -162,9 +162,9 @@
 "line": 20,
 "file": "dl_19.sub",
 "url": "https://raw.githubusercontent.com/billkit/vanic-mix-subs/main/vanic_merged.yaml",
-"nodes": 668,
+"nodes": 667,
 "dropped": {
-"重复": 3
+"重复": 4
 }
 },
 {
@@ -236,9 +236,9 @@
 "line": 29,
 "file": "dl_28.sub",
 "url": "https://raw.githubusercontent.com/zhangdunlong/free-v2ray-nodes/main/nodes_base64.txt",
-"nodes": 66,
+"nodes": 68,
 "dropped": {
-"重复": 4
+"重复": 2
 }
 },
 {
@@ -254,20 +254,20 @@
 "line": 31,
 "file": "dl_30.sub",
 "url": "https://raw.githubusercontent.com/yy1588133/proxy-pool/main/clash.yaml",
-"nodes": 854,
+"nodes": 843,
 "dropped": {
 "ss2022加密(mihomo不兼容)": 3,
-"重复": 112
+"重复": 123
 }
 },
 {
 "line": 32,
 "file": "dl_31.sub",
 "url": "https://raw.githubusercontent.com/yy1588133/proxy-pool/main/v2ray.txt",
-"nodes": 233,
+"nodes": 235,
 "dropped": {
 "ss2022加密(mihomo不兼容)": 3,
-"重复": 587,
+"重复": 585,
 "ssr base64 损坏(剔除)": 1
 }
 },
@@ -285,16 +285,16 @@
 "line": 34,
 "file": "dl_33.sub",
 "url": "https://raw.githubusercontent.com/mingko3/socks5-clash-proxy/main/proxy.yaml",
-"nodes": 5,
+"nodes": 6,
 "dropped": {}
 },
 {
 "line": 35,
 "file": "dl_34.sub",
 "url": "https://raw.githubusercontent.com/v2raynnodes/v2rayfree/main/v2ray.txt",
-"nodes": 27,
+"nodes": 28,
 "dropped": {
-"重复": 21,
+"重复": 20,
 "未知协议:ew0kicaidii6iciyiiwnciaginbzijogiknoyw5uzwwgoibargfpbhlfq29uzmlncyisdqogicjhzgqioiainjcumjiwljk1ljmila0kicaicg9ydci6icixodawmcisdqogicjpzci6icjmogm4zgmzzc0wzdm3ltq2yjatogiznc1hnzizmjg4mmzjzmuila0kicaiywlkijogijaila0kicaic2n5ijogimf1dg8ila0kicaibmv0ijoginrjccisdqogicj0exblijogim5vbmuila0kicaicgf0aci6iciviiwnciaginrscyi6iciila0kicaic25pijogiiisdqogicjhbhbuijogiiisdqogicjmcci6iciila0kicaiaw5zzwn1cmuioiaimcisdqogicj2y24ioiaiiiwnciaginbjcyi6iciidqp9vless": 2,
 "未知协议:ew0kicaidii6iciyiiwnciaginbzijogiknoyw5uzwwgoibargfpbhlfq29uzmlncyisdqogicjhzgqioiaimtm0lje5ns4xotyumjexiiwnciaginbvcnqioiaimtgwmdaila0kicaiawqioiaizjhjogrjm2qtmgqzny00nmiwlthimzqtytcymzi4odjmy2zliiwnciagimfpzci6iciwiiwnciaginnjesi6icjhdxrviiwnciagim5ldci6icj0y3aila0kicaidhlwzsi6icjub25liiwnciagimhvc3qioiaibgvhcm4uagvhbhroy2fyzwpvynnodwjlbmhhbmnlbwvkawnhbhbyb2zlc3npb25hbhnrawxsc3rvzgf5lmnvbsisdqogicjwyxroijogii8ila0kicaidgxzijogiiisdqogicjzbmkioiaibgvhcm4uagvhbhroy2fyzwpvynnodwjlbmhhbmnlbwvkawnhbhbyb2zlc3npb25hbhnrawxsc3rvzgf5lmnvbsisdqogicjhbhbuijogiiisdqogicjmcci6iciila0kicaiaw5zzwn1cmuioiaimcisdqogicj2y24ioiaiiiwnciaginbjcyi6iciidqp9ss": 2,
 "未知协议:ew0kicaidii6iciyiiwnciaginbzijogiknoyw5uzwwgoibargfpbhlfq29uzmlncyisdqogicjhzgqioiaimtm0lje5ns4xotyumjexiiwnciaginbvcnqioiaimtgwmdaila0kicaiawqioiaizjhjogrjm2qtmgqzny00nmiwlthimzqtytcymzi4odjmy2zliiwnciagimfpzci6iciwiiwnciaginnjesi6icjhdxrviiwnciagim5ldci6icj0y3aila0kicaidhlwzsi6icjub25liiwnciagimhvc3qioiailz9uzwxlz3jhbs0tlvbmqu5cx05fvc0tlvbmqu5cx05fvc0tlvbmqu5cx05fvc0tlvbmqu5cx05fvcisdqogicj0bhmioiaiiiwnciaginnuasi6iciila0kicaiywxwbii6iciila0kicaiznaioiaiiiwnciagimluc2vjdxjlijogijaila0kicaidmnuijogiiisdqogicjwy3mioiaiig0kfq==vless": 1,
@@ -342,9 +342,9 @@
 "line": 39,
 "file": "dl_38.sub",
 "url": "https://raw.githubusercontent.com/zhulinghuanyu/Subscribe/main/clash.yaml",
-"nodes": 16,
+"nodes": 15,
 "dropped": {
-"重复": 1
+"重复": 2
 }
 },
 {
@@ -367,9 +367,9 @@
 "line": 42,
 "file": "dl_41.sub",
 "url": "https://raw.githubusercontent.com/lm705/vair/main/vless_alive.txt",
-"nodes": 33,
+"nodes": 34,
 "dropped": {
-"重复": 36
+"重复": 35
 }
 },
 {
@@ -403,7 +403,7 @@
 "url": "https://raw.githubusercontent.com/nichecer/v2ray-node-share/main/nodes.txt",
 "nodes": 6,
 "dropped": {
-"重复": 21
+"重复": 24
 }
 },
 {
@@ -412,16 +412,16 @@
 "url": "https://raw.githubusercontent.com/nichecer/shadowrocket-node-share/main/nodes.txt",
 "nodes": 0,
 "dropped": {
-"重复": 28
+"重复": 30
 }
 },
 {
 "line": 48,
 "file": "dl_47.sub",
 "url": "https://raw.githubusercontent.com/BarqDev1/vless-aggregator/main/vless_universal.txt",
-"nodes": 24,
+"nodes": 38,
 "dropped": {
-"重复": 23
+"重复": 32
 }
 },
 {
@@ -435,9 +435,9 @@
 "line": 50,
 "file": "dl_49.sub",
 "url": "https://raw.githubusercontent.com/aivey565/free-nodes/main/free-nodes-full.yaml",
-"nodes": 27,
+"nodes": 26,
 "dropped": {
-"重复": 3
+"重复": 4
 }
 },
 {
@@ -489,9 +489,9 @@
 "line": 56,
 "file": "dl_55.sub",
 "url": "https://raw.githubusercontent.com/TravelLeobai/SCHPD/main/Clash_Vless.yaml",
-"nodes": 1044,
+"nodes": 1043,
 "dropped": {
-"重复": 95
+"重复": 96
 }
 },
 {
@@ -509,7 +509,7 @@
 "url": "https://raw.githubusercontent.com/guo0914/Free-Node/main/clash.yaml",
 "nodes": 0,
 "dropped": {
-"重复": 5,
+"重复": 4,
 "ss2022加密(mihomo不兼容)": 1
 }
 },
@@ -519,7 +519,7 @@
 "url": "https://raw.githubusercontent.com/guo0914/Free-Node/main/v2ray.txt",
 "nodes": 1,
 "dropped": {
-"重复": 10
+"重复": 13
 }
 },
 {
@@ -549,9 +549,9 @@
 "line": 63,
 "file": "dl_62.sub",
 "url": "https://raw.githubusercontent.com/guhaoxin123/dsh-vpn/main/clash.yaml",
-"nodes": 335,
+"nodes": 396,
 "dropped": {
-"重复": 404
+"重复": 479
 }
 },
 {
@@ -608,8 +608,8 @@
 "url": "https://raw.githubusercontent.com/zhuhaiuk/free-nodes/main/clash_config.yaml"
 },
 {
-"label": "dl_10.sub",
-"url": "https://raw.githubusercontent.com/zhuhaiuk/free-nodes/main/nodes.txt"
+"label": "dl_9.sub",
+"url": "https://raw.githubusercontent.com/zhuhaiuk/free-nodes/main/extra_clash_config.yaml"
 },
 {
 "label": "dl_13.sub",
@@ -744,6 +744,9 @@
 0,
 0,
 0,
+0,
+0,
+0,
 1,
 1,
 1,
@@ -992,10 +995,6 @@
 6,
 6,
 6,
-6,
-6,
-6,
-7,
 7,
 8,
 8,
@@ -1004,8 +1003,6 @@
 8,
 8,
 8,
-8,
-8,
 9,
 9,
 9,
@@ -1114,9 +1111,6 @@
 11,
 11,
 11,
-12,
-12,
-12,
 12,
 12,
 12,
@@ -1801,6 +1795,8 @@
 16,
 16,
 16,
+16,
+16,
 17,
 17,
 17,
@@ -2572,6 +2568,8 @@
 18,
 18,
 18,
+18,
+18,
 19,
 19,
 19,
@@ -2805,6 +2803,8 @@
 19,
 19,
 19,
+19,
+19,
 20,
 20,
 20,
@@ -3518,6 +3518,7 @@
 20,
 20,
 20,
+21,
 21,
 21,
 21,
@@ -3547,7 +3548,6 @@
 21,
 22,
 23,
-24,
 24,
 24,
 24,
@@ -3617,6 +3617,7 @@
 27,
 27,
 27,
+27,
 28,
 28,
 28,
@@ -5324,6 +5325,20 @@
 29,
 29,
 29,
+30,
+30,
+30,
+30,
+30,
+30,
+30,
+30,
+30,
+30,
+30,
+30,
+30,
+30,
 30,
 30,
 30,
@@ -5380,7 +5395,6 @@
 33,
 33,
 33,
-34,
 34,
 34,
 34,
@@ -6489,6 +6503,78 @@
 35,
 35,
 36,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
+37,
 37,
 37,
 37,
