@@ -1,9 +1,9 @@
 {
 "summary": {
 "sources": 71,
-"total_nodes": 6369,
-"sources_nodes_sum": 6369,
-"generated": "2026-11-21 01:05 UTC"
+"total_nodes": 6546,
+"sources_nodes_sum": 6546,
+"generated": "2026-11-21 12:04 UTC"
 },
 "sources": [
 {
@@ -54,9 +54,9 @@
 "line": 7,
 "file": "dl_6.sub",
 "url": "https://raw.githubusercontent.com/share-daily/node/main/clash.yaml",
-"nodes": 63,
+"nodes": 61,
 "dropped": {
-"重复": 89
+"重复": 86
 }
 },
 {
@@ -72,8 +72,10 @@
 "line": 9,
 "file": "dl_8.sub",
 "url": "https://raw.githubusercontent.com/zhuhaiuk/free-nodes/main/clash_config.yaml",
-"nodes": 29,
-"dropped": {}
+"nodes": 28,
+"dropped": {
+"重复": 3
+}
 },
 {
 "line": 10,
@@ -88,9 +90,9 @@
 "line": 11,
 "file": "dl_10.sub",
 "url": "https://raw.githubusercontent.com/zhuhaiuk/free-nodes/main/nodes.txt",
-"nodes": 1,
+"nodes": 2,
 "dropped": {
-"重复": 24
+"重复": 23
 }
 },
 {
@@ -112,24 +114,22 @@
 "file": "dl_13.sub",
 "url": "https://raw.githubusercontent.com/awesome-vpn/awesome-vpn/master/clash.yaml",
 "nodes": 31,
-"dropped": {
-"ss2022加密(mihomo不兼容)": 4
-}
+"dropped": {}
 },
 {
 "line": 15,
 "file": "dl_14.sub",
 "url": "https://raw.githubusercontent.com/slxkware/Vless-list/main/Black%20Vless.txt",
-"nodes": 21,
+"nodes": 30,
 "dropped": {}
 },
 {
 "line": 16,
 "file": "dl_15.sub",
 "url": "https://raw.githubusercontent.com/slxkware/Vless-list/main/White%20Vless.txt",
-"nodes": 22,
+"nodes": 29,
 "dropped": {
-"重复": 2
+"重复": 1
 }
 },
 {
@@ -143,9 +143,9 @@
 "line": 18,
 "file": "dl_17.sub",
 "url": "https://raw.githubusercontent.com/hamzawih0/zorVPN/main/clash.yaml",
-"nodes": 49,
+"nodes": 47,
 "dropped": {
-"重复": 1
+"重复": 3
 }
 },
 {
@@ -236,9 +236,9 @@
 "line": 29,
 "file": "dl_28.sub",
 "url": "https://raw.githubusercontent.com/zhangdunlong/free-v2ray-nodes/main/nodes_base64.txt",
-"nodes": 58,
+"nodes": 57,
 "dropped": {
-"重复": 2
+"重复": 3
 }
 },
 {
@@ -254,9 +254,9 @@
 "line": 31,
 "file": "dl_30.sub",
 "url": "https://raw.githubusercontent.com/yy1588133/proxy-pool/main/clash.yaml",
-"nodes": 822,
+"nodes": 1042,
 "dropped": {
-"重复": 72,
+"重复": 97,
 "ss2022加密(mihomo不兼容)": 44
 }
 },
@@ -264,10 +264,9 @@
 "line": 32,
 "file": "dl_31.sub",
 "url": "https://raw.githubusercontent.com/yy1588133/proxy-pool/main/v2ray.txt",
-"nodes": 322,
+"nodes": 249,
 "dropped": {
-"重复": 454,
-"ssr base64 损坏(剔除)": 1,
+"重复": 599,
 "ss2022加密(mihomo不兼容)": 44
 }
 },
@@ -275,9 +274,9 @@
 "line": 33,
 "file": "dl_32.sub",
 "url": "https://raw.githubusercontent.com/jostar1101/free-clash-sub/main/clash-merged-clean.yaml",
-"nodes": 716,
+"nodes": 714,
 "dropped": {
-"重复": 51,
+"重复": 49,
 "缺server/port": 2
 }
 },
@@ -285,7 +284,7 @@
 "line": 34,
 "file": "dl_33.sub",
 "url": "https://raw.githubusercontent.com/mingko3/socks5-clash-proxy/main/proxy.yaml",
-"nodes": 10,
+"nodes": 7,
 "dropped": {}
 },
 {
@@ -367,9 +366,9 @@
 "line": 42,
 "file": "dl_41.sub",
 "url": "https://raw.githubusercontent.com/lm705/vair/main/vless_alive.txt",
-"nodes": 44,
+"nodes": 50,
 "dropped": {
-"重复": 48
+"重复": 34
 }
 },
 {
@@ -390,9 +389,9 @@
 "line": 45,
 "file": "dl_44.sub",
 "url": "https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml",
-"nodes": 1707,
+"nodes": 1702,
 "dropped": {
-"重复": 87,
+"重复": 92,
 "ss2022加密(mihomo不兼容)": 1,
 "缺server/port": 1
 }
@@ -401,9 +400,9 @@
 "line": 46,
 "file": "dl_45.sub",
 "url": "https://raw.githubusercontent.com/nichecer/v2ray-node-share/main/nodes.txt",
-"nodes": 5,
+"nodes": 4,
 "dropped": {
-"重复": 18
+"重复": 19
 }
 },
 {
@@ -419,9 +418,9 @@
 "line": 48,
 "file": "dl_47.sub",
 "url": "https://raw.githubusercontent.com/BarqDev1/vless-aggregator/main/vless_universal.txt",
-"nodes": 47,
+"nodes": 46,
 "dropped": {
-"重复": 30
+"重复": 25
 }
 },
 {
@@ -489,9 +488,9 @@
 "line": 56,
 "file": "dl_55.sub",
 "url": "https://raw.githubusercontent.com/TravelLeobai/SCHPD/main/Clash_Vless.yaml",
-"nodes": 1045,
+"nodes": 1043,
 "dropped": {
-"重复": 94
+"重复": 96
 }
 },
 {
@@ -509,8 +508,8 @@
 "url": "https://raw.githubusercontent.com/guo0914/Free-Node/main/clash.yaml",
 "nodes": 0,
 "dropped": {
-"重复": 9,
-"ss2022加密(mihomo不兼容)": 1
+"重复": 10,
+"ss2022加密(mihomo不兼容)": 2
 }
 },
 {
@@ -519,7 +518,8 @@
 "url": "https://raw.githubusercontent.com/guo0914/Free-Node/main/v2ray.txt",
 "nodes": 0,
 "dropped": {
-"重复": 7
+"重复": 9,
+"ss2022加密(mihomo不兼容)": 1
 }
 },
 {
@@ -551,7 +551,7 @@
 "url": "https://raw.githubusercontent.com/guhaoxin123/dsh-vpn/main/clash.yaml",
 "nodes": 2,
 "dropped": {
-"重复": 75
+"重复": 88
 }
 },
 {
@@ -581,18 +581,19 @@
 "line": 67,
 "file": "dl_66.sub",
 "url": "https://raw.githubusercontent.com/xifan001-lab/clash-sub/main/clash.yaml",
-"nodes": 43,
+"nodes": 22,
 "dropped": {
-"重复": 57
+"重复": 77,
+"ss2022加密(mihomo不兼容)": 1
 }
 },
 {
 "line": 68,
 "file": "dl_67.sub",
 "url": "https://raw.githubusercontent.com/yuluo688/clash-hot-countries/master/clash-hot-countries-en.yaml",
-"nodes": 15,
+"nodes": 17,
 "dropped": {
-"重复": 1
+"重复": 3
 }
 },
 {
@@ -601,7 +602,7 @@
 "url": "https://raw.githubusercontent.com/yuluo688/clash-hot-countries/master/clash-hot-countries-zh.yaml",
 "nodes": 0,
 "dropped": {
-"重复": 16
+"重复": 20
 }
 },
 {
@@ -610,17 +611,17 @@
 "url": "https://raw.githubusercontent.com/yuluo688/clash-hot-countries/master/clash-hot-countries.yaml",
 "nodes": 0,
 "dropped": {
-"重复": 16
+"重复": 20
 }
 },
 {
 "line": 71,
 "file": "dl_70.sub",
 "url": "https://raw.githubusercontent.com/deakintsang/vanic-clash-subscription/main/vanic_merged.yaml",
-"nodes": 172,
+"nodes": 218,
 "dropped": {
-"重复": 30,
-"ss2022加密(mihomo不兼容)": 14
+"重复": 50,
+"ss2022加密(mihomo不兼容)": 6
 }
 }
 ],
@@ -830,6 +831,7 @@
 4,
 4,
 4,
+4,
 5,
 5,
 5,
@@ -1037,9 +1039,7 @@
 6,
 6,
 6,
-6,
-6,
-6,
+7,
 7,
 8,
 8,
@@ -1093,6 +1093,15 @@
 9,
 9,
 9,
+9,
+9,
+9,
+9,
+9,
+9,
+9,
+9,
+9,
 10,
 10,
 10,
@@ -1115,8 +1124,13 @@
 10,
 10,
 10,
-11,
-11,
+10,
+10,
+10,
+10,
+10,
+10,
+10,
 11,
 11,
 11,
@@ -1840,7 +1854,6 @@
 16,
 16,
 16,
-16,
 17,
 17,
 17,
@@ -2559,79 +2572,77 @@
 17,
 17,
 17,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
-18,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
+17,
 18,
 18,
 18,
@@ -2881,7 +2892,6 @@
 18,
 18,
 18,
-19,
 19,
 19,
 19,
@@ -3709,11 +3719,12 @@
 26,
 26,
 26,
-27,
-27,
-27,
-27,
-27,
+26,
+26,
+26,
+26,
+26,
+26,
 27,
 27,
 27,
@@ -5420,8 +5431,6 @@
 28,
 28,
 28,
-28,
-29,
 29,
 29,
 29,
@@ -5500,8 +5509,6 @@
 32,
 32,
 32,
-33,
-33,
 33,
 33,
 33,
@@ -6610,7 +6617,6 @@
 34,
 34,
 35,
-35,
 36,
 36,
 36,
@@ -6637,7 +6643,53 @@
 38,
 38,
 38,
-38,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
+39,
 39,
 39,
 39,
