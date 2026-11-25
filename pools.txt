@@ -127,3 +127,6 @@ https://raw.githubusercontent.com/yuluo688/clash-hot-countries/master/clash-hot-
 https://raw.githubusercontent.com/yuluo688/clash-hot-countries/master/clash-hot-countries-zh.yaml
 https://raw.githubusercontent.com/yuluo688/clash-hot-countries/master/clash-hot-countries.yaml
 https://raw.githubusercontent.com/deakintsang/vanic-clash-subscription/main/vanic_merged.yaml
+
+# gh-scout 2026-11-25 自动搜集 +1 源 (活跃+新仓轮转 + raw 验真)
+https://raw.githubusercontent.com/Komeiji6/Clash-config/main/cmfa-merged-config.yaml
